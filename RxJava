@@ -1,0 +1,62 @@
+RxJava : https://www.youtube.com/playlist?list=PLXjbGq0ERjFq0KvT7clQoOxM5TTd03yji
+
+## Observables 
+
+1- Observable: emit a stream elements (endlessly)
+2- Single: emits exactly one element
+3- Maybe: emits zero or one elements
+4- Completable: emits a “complete” event, without emitting any data type, just a success/failure
+5- Flowable: emit a stream of elements (endlessly, with backpressure to emitting huge numbers of values) and allows to control how fast a source emits items.
+
+Flowable types:
+- On Back Pressure drop: working on Task1 & receive T2, T3 >> Drop T2 & T3
+- On Back pressure latest: working on Task1 & receive T2, T3 >> Drop T2 and keep T3
+- On Back pressure buffer: working on Task1 & receive T2, T3 , T4 & buffer size 2 >> save T2 & T3 in buffer , Then we have 3 types to handle T4:
+      - On overflow error : Error
+      - On overflow drop latest : Drop T4
+      - On overflow drop oldest: Drop T3 & Put T4 in the buffer
+      
+Observable Types: 
+Example: Publisher: A B C D E F G
+
+Cold: (Observable) only execute values when something subscribes to it. For each subscriber the Observable starts a new execution
+First subscriber: A B C D E F G
+Second subscriber: A B C D E F G
+
+Hot: Emit values even if there's no subscribes
+    - Connectable Observable: For each subscriber the Observable observe the new emitted value ( pulish & connect) 
+      First subscriber: A B C D - E F G
+      Second subscriber:          E F G
+
+    - PublishSubject: For each subscriber the Observable observe the new emitted value
+      First subscriber: A B C D - E F G
+      Second subscriber:          E F G
+    
+    - BehaviourSubject: Listen to the latest
+      First subscriber: A B C D - E F G
+      Second subscriber:        D E F G
+      
+    - ReplaySubject: Pause the old and repeat for the new subscriber
+      First subscriber: A B C D         E F G
+      Second subscriber:        A B C D E F G
+      
+    - AsyncSubject: Observe the latest
+      First subscriber: G
+      Second subscriber: G
+      
+
+## Observer
+- Obserever / SingleObserver / CompletableObserver / MaybeObserver
+
+## Operators: Factories method / Creation Operator to create Observables
+1 - Observable.intervalRang
+2 - ObservableOnSubscribe: on Error it will not continue
+3 - Observable.just : take 10 values
+4 - Observable.fromArray
+5 - Observable.rage
+6 - Observable.timer
+
+
+Excution: observable.subscribe(observer)
+    
+    
