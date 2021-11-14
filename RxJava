@@ -48,6 +48,9 @@ Hot: Emit values even if there's no subscribes
 ## Observer
 - Obserever / SingleObserver / CompletableObserver / MaybeObserver
 
+Excution: observable.subscribe(observer)
+--------------------------------
+
 ## Operators: Factories method / Creation Operator to create Observables
 1 - Observable.intervalRang
 2 - ObservableOnSubscribe: on Error it will not continue
@@ -55,8 +58,42 @@ Hot: Emit values even if there's no subscribes
 4 - Observable.fromArray
 5 - Observable.rage
 6 - Observable.timer
+--------------------------------
 
+##schedulers 
+- IO / Computation / newThread / mainThread / Trampoline (first in first out)
+--------------------------------
+Observable work on upStream 
+Observer work on downStream
+Default it work on Main thread
 
-Excution: observable.subscribe(observer)
+Excution: observable.just(1 , 2, 3 , 4, 5)
+                  .subscribeOn(Schedulers.io) >>> it will change upstream & down stream
+                  .subscribe(observer)
+
+Excution: observable.just(1 , 2, 3 , 4, 5)
+                  .subscribeOn(Schedulers.io) >>> upstream work on io
+                  .observeOn(Schedulers.main) >>> downstream work on main
+                  .subscribe(observer)
+                  
+--------------------------------
+
+Operators
+
+map: Transform one stream to another by Apply function on each element and return a single value for each element
+flatMap: the same as map but FlatMap is used to map over asynchronous operations
+debounce: wait for x time to emit downstream
+distinctUntilChanged:  emit the same value 2 times from the upstream -> observe only one time on the down stream
+filter: filter based on method
+switchMap: it will unsubscribe from previous observable every time it gets a new item that needs to be mapped
+
+--------------------------------
+Disposable
+
+Observables --- Disposable  (connection) --> Observer
+
+CompositeDisposable.add( Disposable return from subscribe)
+CompositeDisposable.clear
+
     
     
