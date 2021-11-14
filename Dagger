@@ -1,0 +1,14 @@
+## Constructor Injection
+- @Inject before constructor to tell dagger how to instantiate object
+- @component : before interface to tell dagger to implement this interface to provide us with required fields
+
+## Field Injection:  @Inject before fields/variable 
+
+## Method Injection: @Inject before method to be called after constructor/creating instance 
+ 
+## Module and Provider: sometimes we can’t modify the constructor of objects (like classes that belong to 3rd party libraries.),  in this case we should
+- Create module class and annotate it with @module
+- Create methods that instantiate this field and annotate it with @Provides
+- Add this module to Component class
+
+
