@@ -11,5 +11,10 @@
 - Create methods that instantiate this field and annotate it with @Provides
 - Add this module to Component class
 
+## Interface Injection: 
+Create abstract Module class and annotate it with @module
+Create abstract method and annotate it with @Binds
+Add this module to Component class
+
 @Singleton is the only scope annotation that comes with the javax.inject package. You can use it to annotate ApplicationComponent and the objects you want to reuse across the whole application.
 
