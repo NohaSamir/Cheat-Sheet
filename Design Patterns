@@ -1,0 +1,36 @@
+https://refactoring.guru/design-patterns/
+https://www.coursera.org/learn/design-patterns/home/welcome
+
+Template Method pattern: 
+  - is a behavioral design pattern 
+  - that defines the skeleton of an algorithm in the superclass 
+  - but lets subclasses override specific steps of the algorithm in the subclasses without changing its structure.
+
+``java``
+    public abstract class SelfDrivingVehicle {
+    
+        //Templete method
+        public final void driveToDestination() {
+            reachToDestination();
+            steer();
+            accelerate();
+            barke();
+        }
+
+        protected abstract void steer();
+        protected abstract void accelerate();
+        protected abstract void barke();
+
+        private void reachToDestination() {
+            System.out.println("Reach to destination");
+        }
+    }
+```   
+
+Chain of Responsibility 
+  - is a behavioral design pattern 
+  - that lets you pass requests along a chain of handlers. 
+  - Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
+  
+  Example: https://www.tutorialspoint.com/design_pattern/chain_of_responsibility_pattern.htm
+  
